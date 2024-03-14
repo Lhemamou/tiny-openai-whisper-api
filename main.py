@@ -86,12 +86,16 @@ async def transcriptions(model: str = Form(...),
                          temperature: Optional[float] = Form(None),
                          language: Optional[str] = Form(None)):
 
+    WHISPER_DEFAULT_SETTINGS_COPY=WHISPER_DEFAULT_SETTINGS.copy()
+
     assert model == "whisper-1"
     if file is None:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=f"Bad Request, bad file"
             )
+    if language is not None :
+        WHISPER_DEFAULT_SETTINGS_COPY["language"]=language
     if response_format is None:
         response_format = 'json'
     if response_format not in ['json',
@@ -118,7 +122,7 @@ async def transcriptions(model: str = Form(...),
     shutil.copyfileobj(fileobj, upload_file)
     upload_file.close()
 
-    transcript = transcribe(audio_path=upload_name, **WHISPER_DEFAULT_SETTINGS)
+    transcript = transcribe(audio_path=upload_name, **WHISPER_DEFAULT_SETTINGS_COPY)
 
 
     if response_format in ['text']:
