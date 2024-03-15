@@ -22,6 +22,12 @@ or
 docker compose build
 ```
 
+## Deployement on a Synology NAS
+
+just use portainer and the docker compose file :)
+
+examples could be found on the awesome website of [marius hosting](https://mariushosting.com/)
+
 ## Usage
 
 ### server
@@ -36,11 +42,7 @@ or
 docker compose up
 ```
 
-## Deployement on a Synology NAS
 
-just use portainer and the docker compose file :)
-
-examples could be found on the awesome website of [marius hosting](https://mariushosting.com/)
 
 
 ### client
