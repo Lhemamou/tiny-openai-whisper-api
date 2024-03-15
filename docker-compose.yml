@@ -2,10 +2,8 @@ version: "3.9"
 
 services:
   whisper-api:
-    image: morioka/tiny-openai-whisper-api
-    build: .
+    image: grafting1769/wishper-tin-api
     container_name: whisper-api
-    restart: unless-stopped
-    init: true
+    restart: on-failure:5
     ports:
       - 8000:8000
